@@ -26,4 +26,13 @@ describe("Users model", () => {
     const darragh = await Users.findById(1);
     expect(darragh).toMatchObject({ username: "darragh", password: "pass" });
   });
+
+  it("can delete a user in the db", async () => {
+    Users.add({ username: "darragh", password: "pass" });
+    let users = await Users.findAll();
+    expect(users).toHaveLength(1);
+    await Users.deleteById(1);
+    users = await Users.findAll();
+    expect(users).toHaveLength(0);
+  });
 });
