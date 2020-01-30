@@ -21,7 +21,9 @@ describe("Users model", () => {
     expect(user).toMatchObject({ username: "darragh", password: "pass" });
   });
 
-  //   it('can find a hobbit in the db', async () => {
-  //       await
-  //   })
+  it("can find a user in the db", async () => {
+    Users.add({ username: "darragh", password: "pass" });
+    const darragh = await Users.findById(1);
+    expect(darragh).toMatchObject({ username: "darragh", password: "pass" });
+  });
 });
