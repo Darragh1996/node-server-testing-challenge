@@ -9,7 +9,11 @@ function findBy(filter) {
 }
 
 function add(user) {
-  return db("users").insert(user);
+  return db("users")
+    .insert(user)
+    .then(([id]) => {
+      return findById(id);
+    });
 }
 
 function findById(id) {
